@@ -1,0 +1,38 @@
+import os
+import comtypes.client
+
+
+def word_to_pdf(input_file, output_file=None):
+    # Check if the input file exists
+    if not os.path.exists(input_file):
+        print(f"The file {input_file} does not exist.")
+        return
+
+    # Set output file if not provided
+    if output_file is None:
+        output_file = os.path.splitext(input_file)[0] + ".pdf"
+
+    # Create Word Application
+    word = comtypes.client.CreateObject("Word.Application")
+    word.Visible = False
+
+    try:
+        # Open the Word document
+        doc = word.Documents.Open(input_file)
+
+        # Save the document as PDF
+        doc.SaveAs(output_file, FileFormat=17)  # 17 is the format for PDF
+
+        print(f"File successfully converted to {output_file}")
+    except Exception as e:
+        print(f"Error: {e}")
+    finally:
+        # Close the document and Word application
+        doc.Close()
+        word.Quit()
+
+
+# Example usage
+input_file = r"your\ip\doc"  # Change to your file path
+output_file = r"your\op\pdf"  # Change to your output file path (optional)
+word_to_pdf(input_file, output_file)
