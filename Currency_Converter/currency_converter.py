@@ -9,17 +9,22 @@ def convert_usd_to_gbp(amount):
 def convert_usd_to_jpy(amount):
     return amount * exchange_rates.USD_TO_JPY
 
+def convert_usd_to_inr(amount):
+    return amount * exchange_rates.USD_TO_INR
+
 def main():
     usd_amount = 100
     
     eur_amount = convert_usd_to_eur(usd_amount)
     gbp_amount = convert_usd_to_gbp(usd_amount)
     jpy_amount = convert_usd_to_jpy(usd_amount)
+    inr_amount = convert_usd_to_inr(usd_amount)
     
     print(f"USD {usd_amount} is equal to:")
     print(f"- EUR {eur_amount}")
     print(f"- GBP {gbp_amount}")
     print(f"- JPY {jpy_amount}")
+    print(f"- JPY {inr_amount}")
 
 if __name__ == "__main__":
     main()
